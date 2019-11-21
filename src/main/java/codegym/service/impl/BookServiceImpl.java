@@ -9,9 +9,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public class BookServiceImpl implements BookService {
-
     @Autowired
-    private BookRepository bookRepository;
+    BookRepository bookRepository;
+
 
     @Override
     public Page<Book> findAll(Pageable pageable) {
@@ -29,7 +29,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public void remove(Long id) {
+    public void delete(Long id) {
         bookRepository.delete(id);
     }
 
@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> findAllByNameContaining(String name, Pageable pageable) {
-        return bookRepository.findAllByNameContaining(name, pageable);
+    public Page<Book> findAllByCategoryContaining(String category, String name, Pageable pageable) {
+        return null;
     }
 }

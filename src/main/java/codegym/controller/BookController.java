@@ -16,87 +16,93 @@ import java.util.Optional;
 
 @Controller
 public class BookController {
+    @Autowired
+    BookService bookService;
 
     @Autowired
-    private BookService bookService;
+    CategoryService categoryService;
 
-    @Autowired
-    private CategoryService categoryService;
-
-    @ModelAttribute("category")
-    public Iterable<Category> categories(){
+    @ModelAttribute("categorys")
+    public Iterable<Category> categories() {
         return categoryService.findAll();
     }
 
     @GetMapping("/books")
-    public ModelAndView listBooks(@RequestParam("s") Optional<String> s, @PageableDefault(size = 10) Pageable pageable){
+    public ModelAndView showListBooks(@RequestParam("s") Optional<String> s, @PageableDefault(size = 10) Pageable pageable) {
         Page<Book> books;
-        if(s.isPresent()){
-            books = bookService.findAllByNameContaining(s.get(), pageable);
-        } else{
+        if (s.isPresent()) {
+            books = bookService.findAllByCategoryContaining(s.get(), s.get(), pageable);
+        } else {
             books = bookService.findAll(pageable);
         }
-        ModelAndView modelAndView = new ModelAndView("book/list");
+        ModelAndView modelAndView = new ModelAndView("/book/list");
         modelAndView.addObject("books", books);
         return modelAndView;
     }
 
     @GetMapping("/create-book")
-    public ModelAndView showCreateForm(){
+    public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/book/create");
         modelAndView.addObject("book", new Book());
         return modelAndView;
     }
 
     @PostMapping("/create-book")
-    public ModelAndView saveBooks(@ModelAttribute("book") Book book){
+    public ModelAndView saveBook(@ModelAttribute("book") Book book) {
         bookService.save(book);
         ModelAndView modelAndView = new ModelAndView("/book/create");
-        modelAndView.addObject("book", new Book());
-        modelAndView.addObject("message", "New book created successfully");
+        modelAndView.addObject("book", book);
+        modelAndView.addObject("message", "New Book is create successfully!");
         return modelAndView;
     }
 
     @GetMapping("/edit-book/{id}")
-    public ModelAndView showEditForm(@PathVariable Long id){
+    public ModelAndView showEditForm(@PathVariable("book") Long id) {
         Book book = bookService.findById(id);
-        if(book != null) {
+        if (book != null) {
             ModelAndView modelAndView = new ModelAndView("/book/edit");
             modelAndView.addObject("book", book);
             return modelAndView;
-
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
         }
     }
 
     @PostMapping("/edit-book")
-    public ModelAndView updateBook(@ModelAttribute("book") Book book){
+    public ModelAndView updateBook(@ModelAttribute("book") Book book) {
         bookService.save(book);
         ModelAndView modelAndView = new ModelAndView("/book/edit");
         modelAndView.addObject("book", book);
-        modelAndView.addObject("message", "book updated successfully");
+        modelAndView.addObject("message", "Update this book successfully!");
         return modelAndView;
     }
 
     @GetMapping("/delete-book/{id}")
-    public ModelAndView showDeleteForm(@PathVariable Long id){
+    public ModelAndView deleteForm(@PathVariable("edit") Long id) {
         Book book = bookService.findById(id);
-        if(book != null) {
+        if (book != null) {
             ModelAndView modelAndView = new ModelAndView("/book/delete");
             modelAndView.addObject("book", book);
             return modelAndView;
-
-        }else {
+        } else {
             ModelAndView modelAndView = new ModelAndView("/error.404");
             return modelAndView;
         }
     }
 
     @PostMapping("/delete-book")
-    public String deleteBook(@ModelAttribute("book") Book book){
-        bookService.remove(book.getId());
-        return "redirect:books";
+    public String deleteBook(@ModelAttribute("book") Book book) {
+        bookService.delete(book.getId());
+        return "redirect:book";
     }
+
+    @GetMapping("/view-book/{id}")
+    public ModelAndView readBook(@PathVariable Long id) {
+        Book book = bookService.findById(id);
+        ModelAndView modelAndView = new ModelAndView("/book/view");
+        modelAndView.addObject("book", book);
+        return modelAndView;
+    }
+
 }

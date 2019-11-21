@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${book.name}"></title>
+</head>
+<body>
+<center><h1 th:text="${book.name}"></h1> </center>
+<p><a href="/books">Back to list books</a> </p>
+<p><h4><a th:text="${book.category.name}"
+          th:href="@{/view-category/__${book.category.id}__}"></a></h4></p>
+<p>Date of Purchase:<h5 th:text="${book.dateOfPurchase}"> </h5></p>
+<h3><p><a th:text="${book.content}"></a></p></h3>
+</body>
+</html>

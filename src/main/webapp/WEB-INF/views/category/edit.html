@@ -2,15 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Edit Category</title>
+    <title>Edit province</title>
 </head>
 <body>
 <h1>Edit Category</h1>
 <p>
-    <a href="/home">Menu</a>
-</p>
-<p>
-    <a href="/categories">Category list</a>
+    <a href="/categorys">Categorys list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
@@ -23,12 +20,12 @@
             <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Category:</td>
+            <td>Description :</td>
             <td><input type="text" th:field="*{description}"/></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Update category"></td>
+            <td><input type="submit" value="Update Category"></td>
         </tr>
     </table>
 </form>

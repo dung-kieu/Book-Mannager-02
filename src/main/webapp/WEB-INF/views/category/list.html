@@ -1,25 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Category</title>
+    <title>Title</title>
 </head>
 <body>
-<a href="/create-category">Create new category</a>
-<h1>category</h1>
+<h1> Categorys List</h1>
+<p>
+    <a href="/create-category">Add New Category</a>
+</p>
 <table border="1">
     <tr>
         <th>Name</th>
-        <th>description</th>
+        <th>Description</th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
-    <th:block th:each="category : ${categorys}">
+    <th:block th:each="x: ${categorys}">
         <tr>
-            <td><a th:href="@{/view-category/__${category.id}__}" th:text="${category.name}"></a></td>
-            <td ><a th:text="${category.description}"></a></td>
-            <td><a th:href="@{/edit-category/__${category.id}__ }">Edit</a></td>
-            <td><a th:href="@{/delete-category/__${category.id}__ }">Delete</a></td>
+            <td th:text="${x.name}"></td>
+            <td th:text="${x.description}"></td>
+            <td><a th:href="@{/edit-category/__${x.id}__}">Edit</a></td>
+            <td><a th:href="@{/delete-category/__${x.id}__}">Delete</a></td>
         </tr>
     </th:block>
 </table>

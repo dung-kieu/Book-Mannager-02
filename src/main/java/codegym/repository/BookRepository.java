@@ -6,9 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface BookRepository extends PagingAndSortingRepository<Book,Long> {
-
+public interface BookRepository extends PagingAndSortingRepository<Book, Long> {
     Iterable<Book> findAllByCategory(Category category);
-
-    Page<Book> findAllByNameContaining(String name, Pageable pageable);
+    Page<Book> findAllByCategoryAndName(String category, String name, Pageable pageable);
 }

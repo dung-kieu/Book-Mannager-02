@@ -2,24 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>View category</title>
+    <title>View Category</title>
 </head>
 <body>
-<h1>View category: <span th:text="${category.name}"></span></h1>
-<a href="/category">category list</a>
+<h1>View Category: <span th:text="${category.name}"></span></h1>
+<a href="/categorys">Categorys list</a>
 <table border="1">
     <tr>
         <th>Name</th>
-        <th>Purchase Date</th>
+        <th>Date of Purchase</th>
         <th>Author</th>
         <th>Price</th>
+        <th>Noi Dung</th>
     </tr>
-    <th:block th:each="book : ${books}">
+    <th:block th:each="x : ${books}">
         <tr>
-            <td th:text="${book.name}"></td>
-            <td th:text="${book.date}"></td>
-            <td th:text="${book.author}"></td>
-            <td th:text="${book.price}"></td>
+            <td th:text="${x.name}"></td>
+            <td th:text="${x.dateOfPurchase}"></td>
+            <td th:text="${x.author}"></td>
+            <td th:text="${x.price}"></td>
+            <td th:text="${x.content}"></td>
         </tr>
     </th:block>
 </table>

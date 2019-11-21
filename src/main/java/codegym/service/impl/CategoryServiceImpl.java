@@ -6,9 +6,8 @@ import codegym.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class CategoryServiceImpl implements CategoryService {
-
     @Autowired
-    private CategoryRepository categoryRepository;
+    CategoryRepository categoryRepository;
 
     @Override
     public Iterable<Category> findAll() {
@@ -26,7 +25,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void remove(Long id) {
+    public void delete(Long id) {
         categoryRepository.delete(id);
     }
 }

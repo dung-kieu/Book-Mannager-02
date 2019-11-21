@@ -12,9 +12,9 @@ public interface BookService {
 
     void save(Book book);
 
-    void remove(Long id);
+    void delete(Long id);
 
     Iterable<Book> findAllByCategory(Category category);
 
-    Page<Book> findAllByNameContaining(String name, Pageable pageable);
+    Page<Book> findAllByCategoryContaining(String category,String name, Pageable pageable);
 }

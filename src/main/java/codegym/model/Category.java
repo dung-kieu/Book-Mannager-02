@@ -1,28 +1,28 @@
 package codegym.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "Category")
-public class Category{
-
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
     private String description;
 
-    @OneToMany(mappedBy = "category")
-    private Set<Book> books;
+    @OneToMany(targetEntity = Book.class)
+    private List<Book> books;
 
+    public Category(){}
 
-    public Category(){
-    }
-
-    public Category(String name, String description) {
+    public Category(String name, String description, List<Book> books) {
         this.name = name;
         this.description = description;
+        this.books = books;
     }
 
     public Long getId() {
@@ -49,11 +49,11 @@ public class Category{
         this.description = description;
     }
 
-    public Set<Book> getBooks(){
+    public List<Book> getBooks() {
         return books;
     }
-    public void setBooks(Set<Book> books)
-    {
+
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

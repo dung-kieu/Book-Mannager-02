@@ -7,27 +7,28 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "books")
 public class Book {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String name;
-    private Date date;
+    private String dateOfPurchase;
     private String author;
     private double price;
+    private String content;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "Category_id")
     private Category category;
 
     public Book(){}
 
-    public Book(String name, Date date, String author, double price) {
+    public Book(String name, String dateOfPurchase, String author, double price, Category category) {
         this.name = name;
-        this.date = date;
+        this.dateOfPurchase = dateOfPurchase;
         this.author = author;
         this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -46,12 +47,12 @@ public class Book {
         this.name = name;
     }
 
-    public Date getDate() {
-        return date;
+    public String getDateOfPurchase() {
+        return dateOfPurchase;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDateOfPurchase(String dateOfPurchase) {
+        this.dateOfPurchase = dateOfPurchase;
     }
 
     public String getAuthor() {
@@ -70,10 +71,19 @@ public class Book {
         this.price = price;
     }
 
-    public Category getCategory(){
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Category getCategory() {
         return category;
     }
-    public void setCategory(Category category){
+
+    public void setCategory(Category category) {
         this.category = category;
     }
 }

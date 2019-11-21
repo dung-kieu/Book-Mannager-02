@@ -2,16 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Delete category</title>
+    <title>Delete Department</title>
 </head>
 <body>
-<h1>Delete category</h1>
+<h1>Delete department</h1>
 <h2>Are you sure?</h2>
 <p>
-    <a href="/home">Menu</a>
-</p>
-<p>
-    <a href="/categories">Category list</a>
+    <a href="/categorys">Categorys list</a>
 </p>
 <form th:action="@{/delete-category}" th:object="${category}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
@@ -22,11 +19,11 @@
         </tr>
         <tr>
             <td>Description:</td>
-            <td th:text="${category.description}"></td>
+            <td th:text="${category.name}"></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Delete category"></td>
+            <td><input type="submit" value="Delete Category"></td>
         </tr>
     </table>
 </form>

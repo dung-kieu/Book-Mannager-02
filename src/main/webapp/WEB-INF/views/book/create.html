@@ -5,22 +5,22 @@
     <title>Create Book</title>
 </head>
 <body>
-<h1>Create book</h1>
+<h1>Create Book</h1>
 <p>
-    <a href="/books">Book list</a>
+    <a href="/books">Books list</a>
 </p>
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
-<form th:action="@{/create}" th:object="${book}" method="post">
+<form th:action="@{/create-book}" th:object="${book}" method="post">
     <table>
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"/></td>
         </tr>
         <tr>
-            <td>Date purchase:</td>
-            <td><input type="text" th:field="*{date}"/></td>
+            <td>Date of Purchase: </td>
+            <td><input type="date" th:field="*{dateOfPurchase}"/></td>
         </tr>
         <tr>
             <td>Author:</td>
@@ -28,19 +28,23 @@
         </tr>
         <tr>
             <td>Price:</td>
-            <td><input type="number" th:field="*{price}"/></td>
+            <td><input type="text" th:field="*{price}"/></td>
+        </tr>
+        <tr>
+            <td>Noi Dung:</td>
+            <td><input type="text" th:field="*{content}"/></td>
         </tr>
         <tr>
             <td>Category:</td>
             <td>
                 <select th:field="*{category}">
-                    <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.name}"></option>
+                    <option th:each="p : ${categorys}" th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
             </td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Create book"></td>
+            <td><input type="submit" value="Create Book"></td>
         </tr>
     </table>
 </form>
