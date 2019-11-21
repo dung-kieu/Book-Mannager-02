@@ -9,10 +9,12 @@
 <p>
     <a href="/create-category">Add New Category</a>
 </p>
+
+Language: <a href="?lang=en">English</a> | <a href="?lang=vn">VN</a>
 <table border="1">
     <tr>
-        <th>Name</th>
-        <th>Description</th>
+        <th th:text="#{Category.name}"></th>
+        <th th:text="#{Category.def}"></th>
         <th>Edit</th>
         <th>Delete</th>
     </tr>
